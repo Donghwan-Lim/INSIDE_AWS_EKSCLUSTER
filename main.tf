@@ -108,4 +108,5 @@ module "eks" {
       instance_type   = "t3.small"
       key_name        = "INSIDE_EC2_KEYPAIR"
     }
+  }
 }
