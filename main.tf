@@ -73,7 +73,7 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 ### EKS Kube Config
-/*
+
 module "eks-kubeconfig" {
   source  = "hyperbadger/eks-kubeconfig/aws"
   version = "1.0.0"
@@ -81,13 +81,13 @@ module "eks-kubeconfig" {
   depends_on = [module.eks]
   cluster_id = module.eks.cluster_id
 }
-*/
-/*
+
+
 resource "local_file" "kubeconfig" {
   content  = module.eks-kubeconfig.kubeconfig
   filename = "kubeconfig_${local.cluster_name}"
 }
-*/
+
 
 ### EKS Module
 module "eks" {
