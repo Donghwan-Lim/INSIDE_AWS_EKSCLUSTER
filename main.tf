@@ -99,6 +99,10 @@ module "eks" {
   vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
   subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
 
+  eks_managed_node_group_defaults = {
+    instance_types = ["t3.small", "t3.micro"]
+  }
+
   eks_managed_node_groups = {
     first = {
       desired_capacity = 1
