@@ -97,7 +97,7 @@ module "eks" {
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
   vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
-  subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_private_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_private_subnet_02_id]
+  subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
 
   eks_managed_node_groups = {
     first = {
@@ -105,8 +105,7 @@ module "eks" {
       max_capacity     = 10
       min_capacity     = 1
 
-      instance_type = "t2.micro"
+      instance_type   = "t3.small"
       key_name        = "INSIDE_EC2_KEYPAIR"
     }
-  }
 }
