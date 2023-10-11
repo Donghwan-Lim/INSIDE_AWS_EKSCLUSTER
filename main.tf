@@ -73,6 +73,7 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 ### EKS Kube Config
+/*
 module "eks-kubeconfig" {
   source  = "hyperbadger/eks-kubeconfig/aws"
   version = "1.0.0"
@@ -80,22 +81,23 @@ module "eks-kubeconfig" {
   depends_on = [module.eks]
   cluster_id = module.eks.cluster_id
 }
-
+*/
+/*
 resource "local_file" "kubeconfig" {
   content  = module.eks-kubeconfig.kubeconfig
   filename = "kubeconfig_${local.cluster_name}"
 }
+*/
 
-### EKS Module 2
+### EKS Module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.30.3"
+  version = "~> 18.0"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
-  subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_private_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_private_subnet_02_id]
-
   vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
+  subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_private_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_private_subnet_02_id]
 
   eks_managed_node_groups = {
     first = {
