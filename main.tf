@@ -95,7 +95,7 @@ module "eks" {
   cluster_version = "1.24"
   subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
 
-  vpc_id = data.terraform_remote_state.network.outputs.vpc01.id
+  vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
 
   eks_managed_node_groups = {
     first = {
