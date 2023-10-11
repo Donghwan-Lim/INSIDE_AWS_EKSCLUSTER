@@ -105,7 +105,7 @@ module "eks" {
       max_capacity     = 10
       min_capacity     = 1
 
-      instance_type   = "t3.small"
+      instance_type   = ["t3.small"]
       key_name        = "INSIDE_EC2_KEYPAIR"
     }
   }
