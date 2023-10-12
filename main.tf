@@ -50,7 +50,6 @@ data "terraform_remote_state" "network" {
   }
 }
 
-### AWS SGs Config GET ###
 data "terraform_remote_state" "security" {
   backend = "remote"
   config = {
@@ -114,7 +113,7 @@ module "eks" {
     }
   }
 }
-
+/*
 module "eks_blueprints_addons" {
   source = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
@@ -152,3 +151,4 @@ module "eks_blueprints_addons" {
     Environment = "dev"
   }
 }
+*/
