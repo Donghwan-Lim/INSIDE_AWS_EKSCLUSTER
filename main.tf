@@ -92,7 +92,7 @@ resource "local_file" "kubeconfig" {
 ### EKS Module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 18.0"
+  version = "~> 19.0"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
