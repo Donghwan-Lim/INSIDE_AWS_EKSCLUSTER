@@ -154,24 +154,24 @@ module "eks_blueprints_addons" {
   oidc_provider_arn = module.eks.oidc_provider_arn
 
   eks_addons = {
-    aws-ebs-csi-driver = {
+    /*aws-ebs-csi-driver = {
       most_recent = true
     }
     aws-efs-csi-driver = {
       most_recent = true
-    }
+    }*/
     coredns = {
-      most_recent = true
+      version = "v1.9.3-eksbuild.6"
     }
     vpc-cni = {
-      most_recent = true
+      version = "v1.14.0-eksbuild.3"
     }
     kube-proxy = {
-      most_recent = true
+      version = "v1.24.17-eksbuild.2"
     }
   }
 
-  #enable_aws_load_balancer_controller    = true
+  enable_aws_load_balancer_controller    = true
   #enable_cluster_autoscaler = true
   #enable_karpenter                       = true
   #enable_kube_prometheus_stack           = true
