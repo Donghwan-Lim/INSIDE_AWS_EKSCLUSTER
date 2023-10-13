@@ -13,11 +13,11 @@ terraform {
       version = "5.21.0"
     }
     kubernetes = {
-      source = "hashicorp/kubernetes"
+      source  = "hashicorp/kubernetes"
       version = "2.23.0"
     }
     helm = {
-      source = "hashicorp/helm"
+      source  = "hashicorp/helm"
       version = "2.11.0"
     }
   }
@@ -118,15 +118,29 @@ resource "local_file" "kubeconfig" {
 
 ### EKS Module
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
+  source = "terraform-aws-modules/eks/aws"
   # version = "~> 19.0" # module.eks.cluster_id output error 발생
   version = "~> 18.0"
 
-  cluster_name    = local.cluster_name
-  cluster_version = "1.24"
-  vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
-  subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
+  cluster_name                          = local.cluster_name
+  cluster_version                       = "1.24"
+  vpc_id                                = data.terraform_remote_state.network.outputs.vpc01_id
+  subnet_ids                            = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
   cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
+
+  cluster_addons = {
+    coredns = {
+      resolve_conflicts = "OVERWRITE"
+      addon_version     = "v1.9.3-eksbuild.6"
+    }
+    kube-proxy = {
+      addon_version = "v1.24.17-eksbuild.2"
+    }
+    vpc-cni = {
+      resolve_conflicts = "OVERWRITE"
+      addon_version     = "v1.14.0-eksbuild.3"
+    }
+  }
 
   eks_managed_node_group_defaults = {
     instance_types = ["t3.small", "t3.micro", "t2.micro"]
@@ -134,9 +148,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     eks_node = {
-      instance_type   = ["t3.small"]
-      key_name        = "INSIDE_EC2_KEYPAIR"
-      
+      instance_type = ["t3.small"]
+      key_name      = "INSIDE_EC2_KEYPAIR"
+
       min_size     = 2
       max_size     = 5
       desired_size = 3
@@ -145,7 +159,7 @@ module "eks" {
 }
 
 module "eks_blueprints_addons" {
-  source = "aws-ia/eks-blueprints-addons/aws"
+  source  = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
 
   cluster_name      = module.eks.cluster_name
@@ -153,30 +167,32 @@ module "eks_blueprints_addons" {
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
 
+  /*
   eks_addons = {
-    /*aws-ebs-csi-driver = {
+    aws-ebs-csi-driver = {
       most_recent = true
     }
     aws-efs-csi-driver = {
       most_recent = true
-    }*/
+    }
     coredns = {
-      version = "v1.9.3-eksbuild.6"
+      version = "v1.9.3-eksbuild.6" # 작동 안함
     }
     vpc-cni = {
-      version = "v1.14.0-eksbuild.3"
+      version = "v1.14.0-eksbuild.3" # 작동 안함
     }
     kube-proxy = {
-      version = "v1.24.17-eksbuild.2"
+      version = "v1.24.17-eksbuild.2" # 작동안함
     }
   }
+*/
 
-  enable_aws_load_balancer_controller    = true
+  enable_aws_load_balancer_controller = true
   #enable_cluster_autoscaler = true
   #enable_karpenter                       = true
   #enable_kube_prometheus_stack           = true
-  enable_metrics_server                  = true
-  enable_external_dns                    = true
-  enable_cert_manager                    = true
+  enable_metrics_server = true
+  enable_external_dns   = true
+  enable_cert_manager   = true
   #cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 }
