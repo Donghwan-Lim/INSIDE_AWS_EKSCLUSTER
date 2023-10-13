@@ -130,14 +130,14 @@ module "eks" {
 
   cluster_addons = {
     coredns = {
-      resolve_conflicts = "OVERWRITE"
-      addon_version     = "v1.9.3-eksbuild.6"
+      resolve_conflicts_on_create = "OVERWRITE"
+      addon_version     = "v1.8.7-eksbuild.3"
     }
     kube-proxy = {
       addon_version = "v1.24.17-eksbuild.2"
     }
     vpc-cni = {
-      resolve_conflicts = "OVERWRITE"
+      resolve_conflicts_on_create = "OVERWRITE"
       addon_version     = "v1.14.0-eksbuild.3"
     }
   }
@@ -153,7 +153,7 @@ module "eks" {
 
       min_size     = 2
       max_size     = 5
-      desired_size = 3
+      desired_size = 2
     }
   }
 }
