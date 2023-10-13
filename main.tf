@@ -134,11 +134,11 @@ module "eks" {
       addon_version     = "v1.8.7-eksbuild.3"
     }
     kube-proxy = {
-      addon_version = "v1.24.17-eksbuild.2"
+      addon_version = "v1.24.7-eksbuild.2"
     }
     vpc-cni = {
       resolve_conflicts_on_create = "OVERWRITE"
-      addon_version     = "v1.14.0-eksbuild.3"
+      addon_version     = "v1.11.4-eksbuild.1"
     }
   }
 
