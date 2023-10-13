@@ -157,6 +157,9 @@ module "eks_blueprints_addons" {
     aws-ebs-csi-driver = {
       most_recent = true
     }
+    aws-efs-csi-driver = {
+      most_recent = true
+    }
     coredns = {
       most_recent = true
     }
@@ -170,8 +173,8 @@ module "eks_blueprints_addons" {
 
   enable_aws_load_balancer_controller    = true
   enable_cluster_proportional_autoscaler = true
-  enable_karpenter                       = true
-  enable_kube_prometheus_stack           = true
+  #enable_karpenter                       = true
+  #enable_kube_prometheus_stack           = true
   enable_metrics_server                  = true
   enable_external_dns                    = true
   enable_cert_manager                    = true
