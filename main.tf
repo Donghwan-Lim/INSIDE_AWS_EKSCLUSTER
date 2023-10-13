@@ -39,6 +39,12 @@ provider "helm" {
   }
 }
 
+ provider "kubectl" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
 locals {
   common-tags = {
     author      = "DonghwanLim"
