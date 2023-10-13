@@ -171,7 +171,7 @@ module "eks_blueprints_addons" {
   depends_on = [ module.eks ] # eks 리소스 생성 후 addon 설치
 
   enable_aws_load_balancer_controller = true
-  #enable_cluster_autoscaler = true
+  enable_cluster_autoscaler = true
   #enable_karpenter                       = true
   #enable_kube_prometheus_stack           = true
   enable_metrics_server = true
