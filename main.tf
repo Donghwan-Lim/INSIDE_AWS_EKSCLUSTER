@@ -50,6 +50,7 @@ data "terraform_remote_state" "network" {
   }
 }
 
+### AWS SGs Config GET ###
 data "terraform_remote_state" "security" {
   backend = "remote"
   config = {
@@ -91,7 +92,7 @@ resource "local_file" "kubeconfig" {
 ### EKS Module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.0"
+  version = "~> 18.0"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
@@ -113,7 +114,7 @@ module "eks" {
     }
   }
 }
-
+/*
 module "eks_blueprints_addons" {
   source = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
@@ -151,3 +152,4 @@ module "eks_blueprints_addons" {
     Environment = "dev"
   }
 }
+*/
