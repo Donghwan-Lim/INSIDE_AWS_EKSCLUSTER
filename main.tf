@@ -167,6 +167,18 @@ module "eks_blueprints_addons" {
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
 
+  depends_on = [ module.eks ] # eks 리소스 생성 후 addon 설치
+
+  enable_aws_load_balancer_controller = true
+  #enable_cluster_autoscaler = true
+  #enable_karpenter                       = true
+  #enable_kube_prometheus_stack           = true
+  enable_metrics_server = true
+  enable_external_dns   = true
+  enable_cert_manager   = true
+  #cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
+
+  
   /*
   eks_addons = {
     aws-ebs-csi-driver = {
@@ -187,12 +199,4 @@ module "eks_blueprints_addons" {
   }
 */
 
-  enable_aws_load_balancer_controller = true
-  #enable_cluster_autoscaler = true
-  #enable_karpenter                       = true
-  #enable_kube_prometheus_stack           = true
-  enable_metrics_server = true
-  enable_external_dns   = true
-  enable_cert_manager   = true
-  #cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 }
