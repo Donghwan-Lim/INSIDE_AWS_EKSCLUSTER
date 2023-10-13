@@ -105,16 +105,13 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    first = {
-      desired_capacity = 2
-      max_capacity     = 5
-      min_capacity     = 2
-
+    eks_node = {
       instance_type   = ["t3.small"]
       key_name        = "INSIDE_EC2_KEYPAIR"
-      tags = {
-        Name = "eks-node"
-      }
+      
+      min_size     = 2
+      max_size     = 5
+      desired_size = 3
     }
   }
 }
