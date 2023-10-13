@@ -18,7 +18,7 @@ terraform {
     }
     helm = {
       source = "hashicorp/helm"
-      version = "2.9.0"
+      version = "2.11.0"
     }
   }
 }
@@ -171,8 +171,8 @@ module "eks_blueprints_addons" {
     }
   }
 
-  enable_aws_load_balancer_controller    = true
-  enable_cluster_autoscaler = true
+  #enable_aws_load_balancer_controller    = true
+  #enable_cluster_autoscaler = true
   #enable_karpenter                       = true
   #enable_kube_prometheus_stack           = true
   enable_metrics_server                  = true
