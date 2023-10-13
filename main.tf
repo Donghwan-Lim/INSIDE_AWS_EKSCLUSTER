@@ -122,6 +122,7 @@ module "eks" {
   cluster_version = "1.24"
   vpc_id = data.terraform_remote_state.network.outputs.vpc01_id
   subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
+  cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
 
   eks_managed_node_group_defaults = {
     instance_types = ["t3.small", "t3.micro", "t2.micro"]
