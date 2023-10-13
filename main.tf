@@ -92,7 +92,8 @@ resource "local_file" "kubeconfig" {
 ### EKS Module
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "~> 19.0"
+  # version = "~> 19.0" # module.eks.cluster_id output error 발생
+  version = "~> 18.0"
 
   cluster_name    = local.cluster_name
   cluster_version = "1.24"
@@ -100,17 +101,20 @@ module "eks" {
   subnet_ids      = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
 
   eks_managed_node_group_defaults = {
-    instance_types = ["t3.small", "t3.micro"]
+    instance_types = ["t3.small", "t3.micro", "t2.micro"]
   }
 
   eks_managed_node_groups = {
     first = {
-      desired_capacity = 1
-      max_capacity     = 10
-      min_capacity     = 1
+      desired_capacity = 2
+      max_capacity     = 5
+      min_capacity     = 2
 
       instance_type   = ["t3.small"]
       key_name        = "INSIDE_EC2_KEYPAIR"
+      tags = {
+        Name = "eks-node"
+      }
     }
   }
 }
