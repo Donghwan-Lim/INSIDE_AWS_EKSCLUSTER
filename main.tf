@@ -63,7 +63,8 @@ locals {
 }
 
 locals {
-  cluster_name = "INSIDE_learnk8s"
+  # Local Variable EKS Cluster Name
+  cluster_name = "INSIDE_EKS_CLUSTER_1_24"
 }
 
 ### AWS NETWORK Config GET ###
