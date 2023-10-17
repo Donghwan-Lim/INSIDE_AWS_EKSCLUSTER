@@ -184,6 +184,7 @@ module "eks_blueprints_addons" {
   enable_metrics_server = true
   enable_external_dns   = true
   enable_cert_manager   = true
+  enable_argocd = true
   #cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 
   
