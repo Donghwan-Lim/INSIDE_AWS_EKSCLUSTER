@@ -155,7 +155,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    INSIDE_EKS_CLUSTER_1_24 = {
+    kbc-stg-eks-1-2-4 = {
       instance_type = ["m5.large"]
       key_name      = "INSIDE_EC2_KEYPAIR"
 
