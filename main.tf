@@ -130,6 +130,12 @@ module "eks" {
   cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
 
   cluster_addons = {
+    aws-ebs-csi-driver = {
+      addon_version     = "v1.23.1-eksbuild.1"
+    }
+    aws-efs-csi-driver = {
+      addon_version     = "v1.7.0-eksbuild.1"
+    }
     coredns = {
       resolve_conflicts_on_create = "OVERWRITE"
       addon_version     = "v1.8.7-eksbuild.3"
@@ -148,7 +154,7 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    eks_node = {
+    local.cluster_name = {
       instance_type = ["m5.large"]
       key_name      = "INSIDE_EC2_KEYPAIR"
 
