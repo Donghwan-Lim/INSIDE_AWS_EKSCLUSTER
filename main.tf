@@ -130,6 +130,10 @@ module "eks" {
   subnet_ids                            = [data.terraform_remote_state.network.outputs.vpc01_public_subnet_01_id, data.terraform_remote_state.network.outputs.vpc01_public_subnet_02_id]
   cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
 
+  # Cluster API Access Config
+  cluster_endpoint_private_access = true
+  cluster_endpoint_public_access = false
+
   cluster_addons = {
     aws-ebs-csi-driver = {
       addon_version     = "v1.23.1-eksbuild.1"
@@ -157,7 +161,7 @@ module "eks" {
   eks_managed_node_groups = {
     kbc-stg-eks-1-2-4 = {
       key_name      = "INSIDE_EC2_KEYPAIR"
-      instance_types = ["m5.xlarge"]
+      instance_types = ["m5.large"]
       min_size     = 2
       max_size     = 2
       desired_size = 2
