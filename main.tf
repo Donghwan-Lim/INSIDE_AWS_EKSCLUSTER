@@ -134,6 +134,26 @@ module "eks" {
   cluster_endpoint_private_access = true
   cluster_endpoint_public_access = false
 
+  # User Config
+  manage_aws_auth_configmap = true
+  /* Role에 적용하는 코드
+  aws_auth_roles = [
+    {
+      rolearn  = "arn:aws:iam::66666666666:role/role1"
+      username = "role1"
+      groups   = ["system:masters"]
+    },
+  ]*/
+
+  # User에 적용하는 코드
+  aws_auth_users = [
+    {
+      userarn  = "arn:aws:iam::421448405988:user/dhlim"
+      username = "dhlim"
+      groups   = ["system:masters"]
+    },
+  ]
+
   cluster_addons = {
     aws-ebs-csi-driver = {
       addon_version     = "v1.23.1-eksbuild.1"
