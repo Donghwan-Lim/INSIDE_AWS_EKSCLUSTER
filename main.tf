@@ -151,7 +151,7 @@ module "eks" {
       userarn  = "arn:aws:iam::421448405988:user/dhlim"
       username = "dhlim"
       groups   = ["system:masters"]
-    },
+    }
   ]
 
   cluster_addons = {
