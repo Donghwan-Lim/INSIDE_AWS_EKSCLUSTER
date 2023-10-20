@@ -151,7 +151,10 @@ module "eks" {
       userarn  = "arn:aws:iam::421448405988:user/dhlim"
       username = "dhlim"
       groups   = ["system:masters"]
-    }
+    },
+  ]
+  aws_auth_accounts = [
+    "421448405988",
   ]
 
   cluster_addons = {
