@@ -157,10 +157,10 @@ module "eks" {
   eks_managed_node_groups = {
     kbc-stg-eks-1-2-4 = {
       key_name      = "INSIDE_EC2_KEYPAIR"
-      instance_types = ["t3.small"]
-      min_size     = 3
-      max_size     = 10
-      desired_size = 5
+      instance_types = ["m5.xlarge"]
+      min_size     = 2
+      max_size     = 2
+      desired_size = 2
     }
   }
 }
