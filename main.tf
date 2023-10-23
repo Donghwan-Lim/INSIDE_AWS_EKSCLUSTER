@@ -131,8 +131,8 @@ module "eks" {
   cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
 
   # Cluster API Access Config
-  cluster_endpoint_private_access = true
-  cluster_endpoint_public_access = false
+  # cluster_endpoint_private_access = true
+  # cluster_endpoint_public_access = false
 
   # User Config
   manage_aws_auth_configmap = true
