@@ -96,7 +96,6 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 ### EKS Kube Config
-
 module "eks-kubeconfig" {
   source  = "hyperbadger/eks-kubeconfig/aws"
   version = "1.0.0"
@@ -159,21 +158,21 @@ module "eks" {
 
   cluster_addons = {
     aws-ebs-csi-driver = {
-      addon_version     = "v1.23.1-eksbuild.1"
+      addon_version = "v1.23.1-eksbuild.1"
     }
     aws-efs-csi-driver = {
-      addon_version     = "v1.7.0-eksbuild.1"
+      addon_version = "v1.7.0-eksbuild.1"
     }
     coredns = {
       resolve_conflicts_on_create = "OVERWRITE"
-      addon_version     = "v1.8.7-eksbuild.3"
+      addon_version               = "v1.8.7-eksbuild.3"
     }
     kube-proxy = {
       addon_version = "v1.24.7-eksbuild.2"
     }
     vpc-cni = {
       resolve_conflicts_on_create = "OVERWRITE"
-      addon_version     = "v1.11.4-eksbuild.1"
+      addon_version               = "v1.11.4-eksbuild.1"
     }
   }
 
@@ -183,11 +182,11 @@ module "eks" {
 
   eks_managed_node_groups = {
     kbc-stg-eks-1-2-4 = {
-      key_name      = "INSIDE_EC2_KEYPAIR"
+      key_name       = "INSIDE_EC2_KEYPAIR"
       instance_types = ["m5.large"]
-      min_size     = 2
-      max_size     = 2
-      desired_size = 2
+      min_size       = 2
+      max_size       = 2
+      desired_size   = 2
     }
   }
 
@@ -212,19 +211,19 @@ module "eks_blueprints_addons" {
   cluster_version   = module.eks.cluster_version
   oidc_provider_arn = module.eks.oidc_provider_arn
 
-  depends_on = [ module.eks ] # eks 리소스 생성 후 addon 설치
+  depends_on = [module.eks] # eks 리소스 생성 후 addon 설치
 
   enable_aws_load_balancer_controller = true
-  enable_cluster_autoscaler = true
+  enable_cluster_autoscaler           = true
   #enable_karpenter                       = true
   #enable_kube_prometheus_stack           = true
   enable_metrics_server = true
   enable_external_dns   = true
   enable_cert_manager   = true
-  enable_argocd = true
+  enable_argocd         = true
   #cert_manager_route53_hosted_zone_arns  = ["arn:aws:route53:::hostedzone/XXXXXXXXXXXXX"]
 
-  
+
   /*
   eks_addons = {
     aws-ebs-csi-driver = {
