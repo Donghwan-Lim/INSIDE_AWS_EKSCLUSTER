@@ -131,7 +131,7 @@ module "eks" {
 
   # Cluster API Access Config
    cluster_endpoint_private_access = true
-   cluster_endpoint_public_access = false
+   cluster_endpoint_public_access = true
 
   # User Config
   manage_aws_auth_configmap = true
