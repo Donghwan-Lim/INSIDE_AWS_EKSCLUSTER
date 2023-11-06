@@ -130,8 +130,8 @@ module "eks" {
   cluster_additional_security_group_ids = [data.terraform_remote_state.security.outputs.vpc1-public-vm-sg-id]
 
   # Cluster API Access Config
-  # cluster_endpoint_private_access = true
-  # cluster_endpoint_public_access = false
+   cluster_endpoint_private_access = true
+   cluster_endpoint_public_access = false
 
   # User Config
   manage_aws_auth_configmap = true
@@ -212,6 +212,14 @@ module "eks_blueprints_addons" {
   oidc_provider_arn = module.eks.oidc_provider_arn
 
   depends_on = [module.eks] # eks 리소스 생성 후 addon 설치
+
+  # Createion Timeout 에러 Fix를 위한 조치
+  /* 필요가 없는게, Timeout 후 다시 Terraform Run을 하면 정상적으로 설치 완료 됨
+  create_delay_duration = "30s"
+  eks_addons_timeouts = {
+    create = "90s"
+    update = "90s"
+  } */
 
   enable_aws_load_balancer_controller = true
   enable_cluster_autoscaler           = true
