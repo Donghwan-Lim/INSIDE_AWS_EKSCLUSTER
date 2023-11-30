@@ -187,6 +187,8 @@ module "eks" {
       min_size       = 1
       max_size       = 1
       desired_size   = 1
+      // 특정 NodeGroup에 적용되는 Security_group Rule 추가하는 부분
+      /*
       security_group_rules = {
         add_rule = {
           type              = "egress"
@@ -204,7 +206,7 @@ module "eks" {
           cidr_blocks       = ["0.0.0.0/0"]
           description = "hello"
         },
-      }
+      }*/
     }
     /*
     NODE_GROUP02 = {
@@ -216,6 +218,8 @@ module "eks" {
     }*/
   }
 
+  // EKS Controller에 적용되는 Security_group Rule 추가하는 부분
+  /*
   cluster_security_group_additional_rules = {
     test_rule = {
       type = "ingress"
@@ -233,8 +237,10 @@ module "eks" {
       source_node_security_group = true
       description = "Hello"
     }
-  }
+  }*/
 
+  // 전체 Node Group에 공통으로 적용되는 Security_group Rule 추가하는 부분
+  /*
   node_security_group_additional_rules = {
     ingress_allow_access_from_control_plane = {
       type                          = "ingress"
@@ -252,7 +258,7 @@ module "eks" {
       source_cluster_security_group = true
       description                   = "LENA"
     }
-  }
+  }*/
 }
 
 resource "aws_security_group_rule" "sample" {
