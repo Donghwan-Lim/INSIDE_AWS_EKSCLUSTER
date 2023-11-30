@@ -203,7 +203,7 @@ module "eks" {
       protocol = "tcp"
       from_port = 443
       to_port = 443
-      source_node_security_group = true
+      cidr_blocks = ["0.0.0.0/0"]
       description = "Hello"
     },
     test_rule2 = {
