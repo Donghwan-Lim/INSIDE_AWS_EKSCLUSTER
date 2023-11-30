@@ -184,17 +184,17 @@ module "eks" {
     NODE_GROUP01 = {
       key_name       = "INSIDE_EC2_KEYPAIR"
       instance_types = ["m5.large"]
-      min_size       = 2
+      min_size       = 1
       max_size       = 2
-      desired_size   = 2
-    }
+      desired_size   = 1
+    }/*
     NODE_GROUP02 = {
       key_name       = "INSIDE_EC2_KEYPAIR"
-      instance_types = ["m5.xlarge"]
+      instance_types = ["t3.medium"]
       min_size       = 2
-      max_size       = 2
+      max_size       = 3
       desired_size   = 2
-    }
+    }*/
   }
 
   node_security_group_additional_rules = {
