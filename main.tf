@@ -187,6 +187,15 @@ module "eks" {
       min_size       = 1
       max_size       = 1
       desired_size   = 1
+      security_group_rules = {
+        add rule = {
+          type              = "egress"
+          to_port           = 23
+          protocol          = "tcp"
+          from_port         = 23
+          cidr_blocks       = ["0.0.0.0/0"]
+          description = "hello"
+        }
     }/*
     NODE_GROUP02 = {
       key_name       = "INSIDE_EC2_KEYPAIR"
