@@ -196,7 +196,9 @@ module "eks" {
           cidr_blocks       = ["0.0.0.0/0"]
           description = "hello"
         }
-    }/*
+      }
+    }
+    /*
     NODE_GROUP02 = {
       key_name       = "INSIDE_EC2_KEYPAIR"
       instance_types = ["t3.medium"]
