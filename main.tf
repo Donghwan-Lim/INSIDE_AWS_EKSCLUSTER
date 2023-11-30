@@ -240,7 +240,6 @@ module "eks" {
   }*/
 
   // 전체 Node Group에 공통으로 적용되는 Security_group Rule 추가하는 부분
-  /*
   node_security_group_additional_rules = {
     ingress_allow_access_from_control_plane = {
       type                          = "ingress"
@@ -249,7 +248,7 @@ module "eks" {
       to_port                       = 9443
       source_cluster_security_group = true
       description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
-    },
+    },/*
     addtolena = {
       type                          = "ingress"
       protocol                      = "tcp"
@@ -257,8 +256,8 @@ module "eks" {
       to_port                       = 7700
       source_cluster_security_group = true
       description                   = "LENA"
-    }
-  }*/
+    }*/
+  }
 }
 
 resource "aws_security_group_rule" "sample" {
