@@ -183,7 +183,7 @@ module "eks" {
   eks_managed_node_groups = {
     NODE_GROUP01 = {
       key_name       = "INSIDE_EC2_KEYPAIR"
-      instance_types = ["m5.large"]
+      instance_types = ["m5.xlarge"]
       min_size       = 1
       max_size       = 1
       desired_size   = 1
