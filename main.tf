@@ -197,6 +197,25 @@ module "eks" {
     }*/
   }
 
+  cluster_security_group_additional_rules = {
+    test_rule = {
+      type = "ingress"
+      protocol = "tcp"
+      from_port = 443
+      to_port = 443
+      source_node_security_group = true
+      description = "Hello"
+    },
+    test_rule2 = {
+      type = "ingress"
+      protocol = "tcp"
+      from_port = 444
+      to_port = 444
+      source_node_security_group = true
+      description = "Hello"
+    }
+  }
+
   node_security_group_additional_rules = {
     ingress_allow_access_from_control_plane = {
       type                          = "ingress"
