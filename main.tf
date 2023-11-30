@@ -195,7 +195,15 @@ module "eks" {
           from_port         = 23
           cidr_blocks       = ["0.0.0.0/0"]
           description = "hello"
-        }
+        },
+        add_rule2 = {
+          type              = "egress"
+          to_port           = 24
+          protocol          = "tcp"
+          from_port         = 24
+          cidr_blocks       = ["0.0.0.0/0"]
+          description = "hello"
+        },
       }
     }
     /*
