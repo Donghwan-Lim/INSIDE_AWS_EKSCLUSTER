@@ -205,6 +205,14 @@ module "eks" {
       to_port                       = 9443
       source_cluster_security_group = true
       description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
+    },
+    addtolena = {
+      type                          = "ingress"
+      protocol                      = "tcp"
+      from_port                     = 7700
+      to_port                       = 7700
+      source_cluster_security_group = true
+      description                   = "LENA"
     }
   }
 }
