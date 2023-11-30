@@ -185,7 +185,7 @@ module "eks" {
       key_name       = "INSIDE_EC2_KEYPAIR"
       instance_types = ["m5.large"]
       min_size       = 1
-      max_size       = 2
+      max_size       = 1
       desired_size   = 1
     }/*
     NODE_GROUP02 = {
