@@ -208,14 +208,14 @@ module "eks" {
     }
   }
 }
-
+/*
 resource "aws_security_group_rule" "sample" {
   type              = "egress"
   to_port           = 22
   protocol          = "tcp"
   from_port         = 22
-  security_group_id = module.eks.eks_managed_node_groups.NODE_GROUP01.security_group_id
-}
+  security_group_id = module.eks.aws_security_group.node[0]
+}*/
 
 module "eks_blueprints_addons" {
   source  = "aws-ia/eks-blueprints-addons/aws"
