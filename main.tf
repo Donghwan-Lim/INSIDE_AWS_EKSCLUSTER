@@ -209,7 +209,7 @@ module "eks" {
   }
 }
 
-resource "aws_security_group_rule" "samp" {
+resource "aws_security_group_rule" "sample" {
   type              = "egress"
   to_port           = 22
   protocol          = "tcp"
