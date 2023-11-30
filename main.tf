@@ -188,7 +188,7 @@ module "eks" {
       max_size       = 1
       desired_size   = 1
       security_group_rules = {
-        add rule = {
+        add_rule = {
           type              = "egress"
           to_port           = 23
           protocol          = "tcp"
