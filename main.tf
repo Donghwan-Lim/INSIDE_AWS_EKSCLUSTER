@@ -215,6 +215,7 @@ resource "aws_security_group_rule" "sample" {
   protocol          = "tcp"
   from_port         = 22
   security_group_id = module.eks.eks_managed_node_groups.NODE_GROUP01.security_group_id
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 module "eks_blueprints_addons" {
