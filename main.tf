@@ -269,7 +269,7 @@ resource "aws_security_group_rule" "sample" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource "aws_security_group_rule" "sample" {
+resource "aws_security_group_rule" "sample2" {
   type              = "egress"
   to_port           = 23
   protocol          = "tcp"
