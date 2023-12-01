@@ -269,6 +269,15 @@ resource "aws_security_group_rule" "sample" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource "aws_security_group_rule" "sample" {
+  type              = "egress"
+  to_port           = 23
+  protocol          = "tcp"
+  from_port         = 23
+  security_group_id = module.eks.eks_managed_node_groups.NODE_GROUP01.security_group_id
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
 module "eks_blueprints_addons" {
   source  = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
